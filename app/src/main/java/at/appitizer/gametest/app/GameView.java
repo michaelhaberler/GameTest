@@ -75,15 +75,16 @@ public class GameView extends SurfaceView {
         canvas.drawColor(Color.BLACK);
         int dx = (int) Math.signum(Math.random() - 0.5);
         int dy = (int) Math.signum(Math.random() - 0.5);
-        if (currPosition.x < getWidth() - bmp.getWidth() && currPosition.y < getHeight() - bmp.getHeight()) {
-            currPosition.x += dx;
-            currPosition.y += dy;
 
-            if (trajectory.size() > TRAJECTORY_SIZE) {
-                trajectory.removeFirst();
-            }
-            trajectory.addLast(new Point(currPosition.x, currPosition.y));
+        // the god may walk out of sight
+        currPosition.x += dx;
+        currPosition.y += dy;
+
+        if (trajectory.size() > TRAJECTORY_SIZE) {
+            trajectory.removeFirst();
         }
+        trajectory.addLast(new Point(currPosition.x, currPosition.y));
+
         Path trajectoryPath = new Path();
         Point start = trajectory.getFirst();
         trajectoryPath.moveTo(start.x, start.y);
