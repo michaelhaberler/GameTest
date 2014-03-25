@@ -5,7 +5,7 @@ android {
     buildToolsVersion "19.0.3"
 
     defaultConfig {
-        minSdkVersion 8
+        minSdkVersion 9
         targetSdkVersion 19
         /*
          * TODO: use versioning like on https://plus.google.com/+JakeWharton/posts/6f5TcVPRZij
