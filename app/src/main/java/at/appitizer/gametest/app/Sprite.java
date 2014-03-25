@@ -57,8 +57,9 @@ public class Sprite {
     public Sprite(GameView gameView, Bitmap bmp) {
         this.gameView=gameView;
         this.bmp=bmp;
-        currPosition.x = this.bmp.getWidth();
-        currPosition.y = this.bmp.getHeight();
+
+        currPosition.x = (int) (Math.random() * (gameView.getWidth() - width));
+        currPosition.y = (int) (Math.random() * (gameView.getHeight() - height));
 
         this.width = bmp.getWidth() / BMP_COLUMNS;
         this.height = bmp.getHeight() / BMP_ROWS;

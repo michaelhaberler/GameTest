@@ -8,14 +8,18 @@ import android.graphics.Color;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by michael on 25/03/14.
  */
 public class GameView extends SurfaceView {
     private static final String TAG = "GameView";
-    private final Sprite sprite;
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
+    private List<Sprite> sprites = new ArrayList<Sprite>();
+
 
     public GameView(Context context) {
         super(context);
@@ -38,6 +42,7 @@ public class GameView extends SurfaceView {
 
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
+                createSprites();
                 gameLoopThread.setRunning(true);
                 gameLoopThread.start();
             }
@@ -48,13 +53,20 @@ public class GameView extends SurfaceView {
             }
         });
 
+    }
+
+    private void createSprites() {
         Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bad1);
-        sprite = new Sprite(this, bmp);
+        sprites.add(new Sprite(this, bmp));
+        sprites.add(new Sprite(this, bmp));
+        sprites.add(new Sprite(this, bmp));
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.BLACK);
-        sprite.onDraw(canvas);
+        for (Sprite sprite: sprites) {
+            sprite.onDraw(canvas);
+        }
     }
 }
